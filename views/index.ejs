@@ -18,9 +18,22 @@
           Something funny coming here :-)
         </div>
       </div>
+        <div class="multi-btn">
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>4</button>
+          <button>5</button>
+          <button>6</button>
+          <button>7</button>
+          <button>8</button>
+          <button>9</button>
+          <button>10</button>
+        </div>
       <div class="g-joke">
         <button id="joke-btn">Get Jokes</button>
       </div>
+    
     </div>
   </div>
 
@@ -30,12 +43,23 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script>
-    document.querySelector('#joke-btn').addEventListener('click', function () {
-      axios.get('/jokes').then(function (jokes) {
-        let joke = jokes.data
-        document.querySelector('.joke').textContent = joke;
+    // document.querySelector('#joke-btn').addEventListener('click', function () {
+    // axios.get('/jokes/index').then(function (jokes) {
+    //   let joke = jokes.data
+    //   document.querySelector('.joke').textContent = joke;
+    // })
+    // })
+
+    document.querySelectorAll('button').forEach(function (btn,idx) {
+      btn.addEventListener('click', function () {
+        axios.get(`/jokes/${idx}`).then(function (jokes) {
+          let joke = jokes.data
+          document.querySelector('.joke').textContent = joke;
+        })
       })
     })
+
+
   </script>
 </body>
 

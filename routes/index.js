@@ -7,15 +7,24 @@ let joke = require('../public/javascripts/jokes')
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('index');
 });
 
-router.get('/jokes', function (req, res, next) {
-  
-  let randomNumber = Math.floor(Math.random() * 15)
-  res.send(joke.joke[randomNumber])
+router.get('/jokes/:index', function (req, res, next) {
+
+  if (req.params.index < 10) {
+    res.send(joke.joke[req.params.index])
+  }
+
+  else {
+
+    let randomNumber = Math.floor(Math.random() * 10)
+    res.send(joke.joke[randomNumber])
+  }
+
 
 })
+
 
 module.exports = router;
